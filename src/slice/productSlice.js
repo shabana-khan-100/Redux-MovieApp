@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     products:[],
     searchValue:'',
+    categoryProducts:[]
 }
 
 const productSlice= createSlice({
@@ -14,10 +15,13 @@ const productSlice= createSlice({
         },
         setSearchMovie:(state,action)=>{
             state.searchValue=action.payload
+        },
+        setCatgeoryProducts:(state,action)=>{
+            state.categoryProducts= action.payload
         }
     }
 })
 
-export const {setProducts,setSearchMovie} = productSlice.actions
+export const {setProducts,setSearchMovie,setCatgeoryProducts} = productSlice.actions
 
 export default productSlice.reducer;

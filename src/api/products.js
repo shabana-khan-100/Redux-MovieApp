@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setProducts } from "../slice/productSlice";
+import {  setCatgeoryProducts, setProducts } from "../slice/productSlice";
 const url = `https://dummyjson.com/products`;
 export const getProducts = () => async (dispatch) => {
   try {
@@ -25,3 +25,25 @@ export const getProductsBySearch = (value) => async (dispatch) => {
     return err;
   }
 };
+
+export const getProductsBybrand = (value)=>async (dispatch) =>{
+     const searchurl = url + "/categories";
+  try {
+    const { data  } = await axios.get(searchurl)
+    console.log("API data",data)
+    dispatch(setCatgeoryProducts(data))
+  } catch (err) {
+    return err;
+  }
+}
+
+export const getProductsByCategory = (value)=>async (dispatch) =>{
+     const searchurl = url + `/category/${value}`;
+  try {
+    const { data :{products} } = await axios.get(searchurl)
+    console.log("catgory API data",products)
+    dispatch(setProducts(products))
+  } catch (err) {
+    return err;
+  }
+}

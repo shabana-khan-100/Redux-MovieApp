@@ -1,5 +1,4 @@
 export const getProductsBySearch = (products, searchValue) => {
-  console.log("search", searchValue, products);
   const afterFilter =
     searchValue.length > 0 && products.length > 0
       ? products.filter(

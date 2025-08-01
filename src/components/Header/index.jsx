@@ -4,6 +4,10 @@ import {AppBar,Box,Toolbar,Typography,InputBase} from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
 import SelectorComponent from "../SelectorComponent"
+import { useDispatch ,useSelector} from 'react-redux';
+import { setSearchMovie } from '../../slice/productSlice';
+import { getProductsBySearch } from '../../api/products';
+import { debounce } from 'lodash';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,6 +50,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+
+  const dispatch= useDispatch();
+  const {searchValue}= useSelector(state=>state.products)
+
+  const searchMovie = debounce(  (e) =>{
+    // dispatch(setSearchMovie(e.target.value))
+    console.log("sear",e.target.value)
+    dispatch(getProductsBySearch(e.target.value))
+
+  },500)
+
+
+  console.log(
+    searchValue
+  )
   
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -60,7 +79,7 @@ export default function Header() {
           >
             Movie App
           </Typography>
-          <Search>
+          <Search onChange={searchMovie}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

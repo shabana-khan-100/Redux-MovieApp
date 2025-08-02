@@ -63,11 +63,11 @@ export default function Header() {
     dispatch(getProductsBybrand());
   }, []);
 
-  const { categoryProducts } = useSelector((state) =>   state.products );
+  const { categoryProducts } = useSelector((state) => state.products);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{padding:1}}>
+      <AppBar position="static" sx={{ padding: 1 }}>
         <Toolbar>
           <Typography
             variant="h6"
@@ -75,7 +75,7 @@ export default function Header() {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            Movie App
+            All in 1MART
           </Typography>
           <Search onChange={searchMovie}>
             <SearchIconWrapper>
@@ -87,9 +87,12 @@ export default function Header() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <SelectorComponent name={"category"} value={categoryProducts}/>
-            <SelectorComponent name={"brand"} value={[]}/>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex", marginRight: 3 },
+            }}
+          >
+            <SelectorComponent name={"category"} value={categoryProducts} />
           </Box>
         </Toolbar>
       </AppBar>
